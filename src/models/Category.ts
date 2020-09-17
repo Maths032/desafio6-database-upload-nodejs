@@ -4,10 +4,15 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
+import Transaction from './Transaction';
 
 @Entity('categories')
 class Category {
+  @OneToMany(() => Transaction, transaction => transaction.category)
+  transaction: Transaction;
+
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
